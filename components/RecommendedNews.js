@@ -5,8 +5,11 @@ export default function RecommendedNews({ posts }) {
       <div className="grid">
         {posts.map((post) => (
           <article key={post.id} className="card">
-            <h3>{post.title}</h3>
-            <p>{post.body}</p>
+            <img src={post.thumbnail} alt={post.title} />
+            <div className="content">
+              <h3>{post.title}</h3>
+              <p>{post.body.substring(0, 100)}...</p>
+            </div>
           </article>
         ))}
       </div>
@@ -36,6 +39,14 @@ export default function RecommendedNews({ posts }) {
         .card:hover {
           transform: scale(1.02);
           border-color: #fff;
+        }
+        img {
+          width: 100%;
+          height: 180px;
+          object-fit: cover;
+        }
+        .content {
+          padding: 1rem;
         }
         h3 {
           color: #00aaff;
