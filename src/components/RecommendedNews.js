@@ -1,7 +1,7 @@
 export default function RecommendedNews({ posts }) {
   return (
     <section className="recommended-news">
-      <h2>Recommended News</h2>
+      <h2>Para você </h2>
       <div className="grid">
         {posts.map((post) => (
           <article key={post.id} className="card">
@@ -20,7 +20,7 @@ export default function RecommendedNews({ posts }) {
         }
         h2 {
           color: #ffffff;
-          font-size: 1.5rem;
+          font-size: 2rem;
           margin-bottom: 3rem;
         }
         .grid {
@@ -29,8 +29,7 @@ export default function RecommendedNews({ posts }) {
           gap: 1rem;
         }
         .card {
-          background: #111;
-          border: 1px solid #00aaff;
+          border: 1px solid #4B535E;
           border-radius: 8px;
           padding: 1rem;
           color: #ddd;
@@ -49,7 +48,7 @@ export default function RecommendedNews({ posts }) {
           padding: 1rem;
         }
         h3 {
-          color: #00aaff;
+          color: #ffffff;
           margin-bottom: 0.5rem;
         }
       `}</style>

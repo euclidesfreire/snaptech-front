@@ -33,13 +33,13 @@ export default function Home() {
       <Header search={search} setSearch={setSearch} />
       <main>
         <RecommendedNews posts={recommendedNews} />
-        <h1 className="recent-news">Recent News</h1>
+        <h1 className="recent-news">Suas notícias</h1>
         <NewsList posts={filteredNews} />
       </main>
 
       <style jsx>{`
         .container {
-          background-color: #000;
+          background-color: #0D1117;
           color: #fff;
           min-height: 100vh;
           padding: 0;
@@ -51,16 +51,8 @@ export default function Home() {
         }
         .recent-news {
           color: #ffffff;
-          font-size: 1.5rem;
+          font-size: 2rem;
           margin-bottom: 1rem;
-          border-bottom: 2px solid #ffffff;
-          padding-bottom: 0.5rem;
-        }
-        h1 {
-          color: #00aaff;
-          font-size: 1.5rem;
-          margin-bottom: 1rem;
-          border-bottom: 2px solid #00aaff;
           padding-bottom: 0.5rem;
         }
       `}</style>
