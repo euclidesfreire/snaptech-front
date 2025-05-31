@@ -8,21 +8,44 @@ export default function Home() {
   const [news, setNews] = useState([]);
   const [recommendedNews, setRecommendedNews] = useState([]);
   const [search, setSearch] = useState('');
+  const [email, setEmail] = useState(null);
 
   useEffect(() => {
     // Fetch news from a public API without token requirement
     async function fetchNews() {
       try {
-        const response = await axios.get('https://jsonplaceholder.typicode.com/posts'); // Example public API
+        //const response = await axios.get('https://jsonplaceholder.typicode.com/posts'); // Example public API
+        const response = await axios.get('/api/news/articles'); // Example public API
         setNews(response.data);
-        setRecommendedNews(response.data.slice(0, 3)); // Mock recommended news
+
+         const saved = localStorage.getItem("user_email");
+         if (saved) {
+            setEmail(saved);
+         } 
       } catch (error) {
         console.error('Error fetching news:', error);
       }
     }
-
     fetchNews();
   }, []);
+
+  //Recommended
+    useEffect(() => {
+      if (!email) return;
+
+      const sendRecommended= async () => {
+        try {
+          const recommended = await axios.post("/api/news/recommendations", { email });
+          console.log('recommended')
+          console.log(recommended)
+          setRecommendedNews(recommended.data.slice(0, 5));
+        } catch (err) {
+          console.error("Erro ao enviar email:", err);
+        }
+      };
+
+      sendRecommended();
+    }, [email]); 
 
   const filteredNews = news.filter((article) =>
     article.title.toLowerCase().includes(search.toLowerCase())
@@ -32,7 +55,13 @@ export default function Home() {
     <div className="container">
       <Header search={search} setSearch={setSearch} />
       <main>
+      {email ? (
+
         <RecommendedNews posts={recommendedNews} />
+
+         ) : (
+        <></>
+      )}
         <h1 className="recent-news">Suas notícias</h1>
         <NewsList posts={filteredNews} />
       </main>

@@ -19,7 +19,7 @@ export default function Header() {
     setStatus("loading");
 
     try {
-      const res = await fetch(`/api/users/check-email?email=${encodeURIComponent(email)}`);
+      const res = await fetch(`/api/check-email?email=${encodeURIComponent(email)}`);
       const data = await res.json();
 
       if (data.exists) {
@@ -33,37 +33,6 @@ export default function Header() {
     } catch (err) {
       console.error(err);
       alert("Erro na verificação");
-      setStatus("error");
-    }
-  };
-
-
-  const handleRegister = async () => {
-    if (!email.includes("@")) {
-      alert("Email inválido");
-      return;
-    }
-
-    setStatus("loading");
-
-    try {
-      const res = await fetch(`/api/users/register?email=${encodeURIComponent(email)}`);
-      const data = await res.json();
-
-      console.log('success')
-      console.log(data.success)
-
-      if (data.success) {
-        localStorage.setItem("user_email", email);
-        setLoggedInEmail(email);
-        setStatus("success");
-      } else {
-        alert("Email já register");
-        setStatus("error");
-      }
-    } catch (err) {
-      console.error(err);
-      alert("Erro no Register");
       setStatus("error");
     }
   };
@@ -93,7 +62,6 @@ export default function Header() {
             placeholder="Digite seu email para ver suas notícias"
           />
           <button onClick={handleLogin}>Entrar</button>
-          <button onClick={handleRegister}>Register</button>
           </div>
         </>
       )}
@@ -108,7 +76,7 @@ export default function Header() {
           padding: 1rem 2rem;
         }
         h1 {
-          font-size: 2.5rem;
+          font-size: 1.5rem;
           color: #ffffff;
         }
         input {

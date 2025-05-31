@@ -30,17 +30,17 @@ function NewsItem({ post }) {
   return (
     <li className="news-item">
       <h2 className="news-title">{post.title}</h2>
-      <small>{new Date(post.publishedAt).toLocaleDateString()}</small>
+      {/*<small>{new Date(post.publishedAt).toLocaleDateString()}</small>*/}
       <p className="news-summary">{post.description}</p>
       <p  className="link-site">
-        <a href="https://www.w3schools.com">Saiba mais</a>
+        <a href={post.link}>Saiba mais</a>
       </p>
       <div className="news-actions">
         <button onClick={handleLike} className="like-button">
-          Gostei {likes}
+          Gostei {post.like_by_users}
         </button>
         <button onClick={handleLike} className="no-like-button">
-          Não Gostei {likes}
+          Não Gostei {post.dislike_by_users}
         </button>
       </div>
 

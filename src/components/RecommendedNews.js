@@ -1,14 +1,22 @@
 export default function RecommendedNews({ posts }) {
+  console.log(posts);
+  console.log(posts);
   return (
     <section className="recommended-news">
+      {posts && posts.length > 0  ? (
+
       <h2>Para você </h2>
+
+      ) : (
+        <></>
+      )}
       <div className="grid">
         {posts.map((post) => (
           <article key={post.id} className="card">
-            <img src={post.thumbnail} alt={post.title} />
+            <img src={post.image_url} alt={post.title} />
             <div className="content">
               <h3>{post.title}</h3>
-              <p>{post.body.substring(0, 100)}...</p>
+              <p>{post.description.substring(0, 100)}...</p>
             </div>
           </article>
         ))}
